@@ -18,28 +18,23 @@ public class RegisterServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 
-		// Nome
 		String name = req.getParameter("name");
 
-		// E-mails (um ou mais)
 		String[] emails = req.getParameterValues("email");
 
-		// Cursos escolhidos
 		String[] courses = req.getParameterValues("options");
 
 		PrintWriter out = resp.getWriter();
 		out.println("<!DOCTYPE html>");
 		out.println("<html><head><meta charset='UTF-8'><title>Resultado</title></head><body>");
-		out.println("<h2>Dados recebidos:</h2>");
+		out.println("<h2>Enviado!</h2>");
 
 		out.println("<p><b>Nome:</b> " + name + "</p>");
 
 		if (emails != null) {
 			out.println("<p><b>E-mails:</b></p>");
 			for (String email : emails) {
-				if (email != null && !email.isBlank()) {
 					out.println("<p>" + email + "</p>");
-				}
 			}
 		}
 
@@ -48,8 +43,6 @@ public class RegisterServlet extends HttpServlet {
 			for (String course : courses) {
 				out.println("<p>" + course + "</p>");
 			}
-		} else {
-			out.println("<p><b>Nenhum curso selecionado.</b></p>");
 		}
 
 		out.println("</body></html>");
