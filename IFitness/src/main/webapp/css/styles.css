@@ -1,12 +1,22 @@
 @charset "UTF-8";
 
 svg {
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 }
 
 button, #link {
 	width: 100%;
+}
+
+.btn-primary {
+	background-color: purple;
+	border-color: purple;
+}
+
+.btn-primary:hover {
+	background-color: #710071;
+	border-color: #710071;
 }
 
 span {

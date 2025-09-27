@@ -41,6 +41,7 @@
 	  				
 	  				<div class="input-group mb-3">
 	  					<span class="input-group-text">
+	  						<jsp:include page="img/envelope_icon.jsp" />
 	  					</span>
 	  					<input type="email" name="email" id="email"
 	  						placeholder="E-mail" required="required"
@@ -49,6 +50,7 @@
 	  				
 	  				<div class="input-group mb-3">
 	  					<span class="input-group-text">
+	  						<jsp:include page="img/file-lock_icon.jsp" />
 	  					</span>
 	  					<input type="password" name="password" id="password"
 	  						placeholder="Senha" required="required"
