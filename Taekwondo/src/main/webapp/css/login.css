@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+/* Fonte personalizada */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap');
+
+/* corpo da página */
+body {
+  background-color: #f8f9fa;
+  font-family: "Oswald", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* cartão principal */
+.card {
+  border-radius: 14px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+}
+
+.logo-center {
+  display: grid;
+  place-items: center;
+  background-color: #6B696A;
+  padding: 22px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  text-align: center;
+}
+
+.logo-center h2 {
+  margin-top: 10px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.p-4 {
+  padding-top: 0 !important;
+}
+
+.btn-warning {
+  background-color: #FBFA0C;
+  border-color: #FBFA0C;
+  color: black;
+  font-weight: 600;
+  margin-top: 45px;
+}
+
+.btn-warning:hover {
+  background-color: #f4f30c;
+  border-color: gray;
+}
+
+.btn-warning:active {
+  background-color: #d4d30a !important;
+  border-color: gray !important;
+}
+
+/* form e inputs */
+.form-label {
+  font-weight: 500;
+}
+
+input.form-control {
+  border-radius: 6px;
+}
+
+input.form-control:focus {
+  box-shadow: 0 0 5px rgba(251, 250, 12, 0.5);
+  border-color: #FBFA0C;
+}
+
+.row-gap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.chk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+#amarelo {
+  accent-color: #FBFA0C;
+}
+
+.link {
+  font-size: 14px;
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #0b5ed7;
+}
