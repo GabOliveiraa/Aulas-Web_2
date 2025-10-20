@@ -1,6 +1,7 @@
 package br.edu.ifspcjo.ads.web2.tkd.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Student {
@@ -132,9 +133,14 @@ public class Student {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+	
+	public String getBirthDateBr() {
+	    return birthDate != null
+	        ? birthDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+	        : "";
+	}
 
-
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -146,7 +152,4 @@ public class Student {
 		Student other = (Student) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }

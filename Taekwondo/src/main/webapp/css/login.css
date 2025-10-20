@@ -1,9 +1,6 @@
 @charset "UTF-8";
-
-/* Fonte personalizada */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap');
 
-/* corpo da página */
 body {
   background-color: #f8f9fa;
   font-family: "Oswald", sans-serif;
@@ -14,7 +11,10 @@ body {
   margin: 0;
 }
 
-/* cartão principal */
+.mb-3 {
+	margin: 20px 0 !important;
+}
+
 .card {
   border-radius: 14px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -23,7 +23,7 @@ body {
   max-width: 480px;
 }
 
-.logo-center {
+.top-text-center {
   display: grid;
   place-items: center;
   background-color: #6B696A;
@@ -33,7 +33,7 @@ body {
   text-align: center;
 }
 
-.logo-center h2 {
+.top-text-center h2 {
   margin-top: 10px;
   color: white;
   font-weight: 700;
@@ -44,25 +44,28 @@ body {
   padding-top: 0 !important;
 }
 
+input.form-control {
+    border-radius: 25px !important;
+}
+
 .btn-warning {
   background-color: #FBFA0C;
   border-color: #FBFA0C;
   color: black;
   font-weight: 600;
-  margin-top: 45px;
+  margin-top: 2em;
 }
 
 .btn-warning:hover {
-  background-color: #f4f30c;
+  background-color: #fbe60c;
   border-color: gray;
 }
 
 .btn-warning:active {
-  background-color: #d4d30a !important;
+  background-color: #fbe60c !important;
   border-color: gray !important;
 }
 
-/* form e inputs */
 .form-label {
   font-weight: 500;
 }
@@ -106,3 +109,24 @@ input.form-control:focus {
   text-decoration: underline;
   color: #0b5ed7;
 }
+
+.input-wrapper { position: relative; }
+
+.input-wrapper .icon-wrapper {
+  position: absolute;
+  right: 12px;
+  top: 72%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.input-wrapper .icon-wrapper svg {
+  width: 20px;
+  height: 20px;
+  fill: #696969;
+  opacity: 0.9;
+}
+
+.form-control.pe-5 { padding-right: 2.5rem !important; }
