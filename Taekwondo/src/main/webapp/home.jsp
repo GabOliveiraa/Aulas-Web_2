@@ -30,7 +30,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Início</a>
+            <a class="nav-link active" href="<c:url value='/home.jsp'/>">Início</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Eventos</a>
@@ -38,14 +38,13 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navComp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Competições
+              Treinos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navComp">
-              <li><a class="dropdown-item" href="<c:url value='/competitions'/>">Minhas competições</a></li>
-              <li><a class="dropdown-item" href="<c:url value='/competitionRegister'/>">Cadastrar competição</a></li>
+              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myTraining">Meus Treinos</a></li>
+					<li><a class="dropdown-item" href="${pageContext.request.contextPath}/training">Cadastrar Treino</a></li>
             </ul>
           </li>
-
         </ul>
         <div class="d-flex align-items-center text-white">
           <span class="me-3">Olá, <strong>${not empty student ? student.name : name}</strong></span>
@@ -73,13 +72,13 @@
               <div class="col-md-6">
                 <p><strong>Gênero:</strong> ${student.gender}</p>
                 <p><strong>Faixa:</strong>
-                  <span class="badge border border-dark text-dark bg-transparent">${student.belt}</span>
+                  <span class="badge text-dark bg-transparent">${student.belt}</span>
                 </p>
               </div>
             </div>
 
             <div class="mt-4 d-flex gap-2 justify-content-center">
-              <a href="#" class="btn btn-primary">Ver Aulas</a>
+              <a href="<c:url value='/myTraining'/>" class="btn btn-primary">Ver Treinos</a>
               <a href="#" class="btn btn-secondary">Editar Perfil</a>
             </div>	
 
