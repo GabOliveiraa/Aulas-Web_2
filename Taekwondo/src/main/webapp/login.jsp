@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value='css/login.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/login.css'/>">
     <title>Login</title>
 </head>
 
@@ -35,28 +35,40 @@
       </c:choose>
 
       <form action="${pageContext.request.contextPath}/loginServlet" method="post">
-		<div class="mb-3 position-relative input-wrapper">
-		  <label for="email" class="form-label">Usuário</label>
-		  <input type="email" class="form-control pe-5" id="email" name="email" required>
-		  <span class="icon-wrapper">
-		    <jsp:include page="img/user_login_icon.jsp"/>
-		  </span>
-		</div>
+		  <div class="mb-3 position-relative input-wrapper">
+		    <label for="email" class="form-label">Usuário</label>
+		    <input type="email"
+		           class="form-control pe-5"
+		           id="email"
+		           name="email"
+		           required
+		           value="${cookie.rememberEmail.value}">
+		    <span class="icon-wrapper">
+		      <jsp:include page="img/user_login_icon.jsp"/>
+		    </span>
+		  </div>
+		
+		  <div class="mb-3 position-relative input-wrapper">
+		    <label for="senha" class="form-label">Senha</label>
+		    <input type="password" class="form-control pe-5" id="senha" name="password" required>
+		    <span class="icon-wrapper">
+		      <jsp:include page="img/lock_icon.jsp" />
+		    </span>
+		  </div>
+		
+		  <div class="d-flex justify-content-between align-items-center mb-3">
+		    <label class="chk">
+		      <input type="checkbox"
+		             id="remember"
+		             name="remember"
+		             ${empty cookie.rememberEmail.value ? "" : "checked"}>
+		      Lembrar-me
+		    </label>
+		  </div>
+		
+		  <button type="submit" class="btn btn-warning w-100">Entrar</button>
+	  </form>
 
-        <div class="mb-3 position-relative input-wrapper">
-		  <label for="senha" class="form-label">Senha</label>
-		  <input type="password" class="form-control pe-5" id="senha" name="password" required>
-		  <span class="icon-wrapper">
-		    <jsp:include page="img/lock_icon.jsp" />
-		  </span>
-		</div>
-
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <label class="chk"><input type="checkbox" id="amarelo"> Lembrar-me</label>
-        </div>
-
-        <button type="submit" class="btn btn-warning w-100">Entrar</button>
-      </form>
 
       <div class="text-center mt-3">
         <a href="${pageContext.request.contextPath}/user-register.jsp" class="text-decoration-none">

@@ -34,8 +34,21 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("student", opt.get());
             req.getSession().setMaxInactiveInterval(30 * 60);
 
+            boolean remember = "on".equals(req.getParameter("remember"));
+            Cookie rememberCookie = new Cookie("rememberEmail", remember ? email : "");
+            rememberCookie.setPath(ctx);
+            rememberCookie.setHttpOnly(true);
+            rememberCookie.setMaxAge(remember ? 60 * 60 * 24 * 7 : 0);
+            resp.addCookie(rememberCookie);
+
             resp.sendRedirect(ctx + "/home.jsp");
         } else {
+            Cookie clear = new Cookie("rememberEmail", "");
+            clear.setPath(ctx);
+            clear.setHttpOnly(true);
+            clear.setMaxAge(0);
+            resp.addCookie(clear);
+
             resp.sendRedirect(ctx + "/login.jsp?result=loginError");
         }
     }
