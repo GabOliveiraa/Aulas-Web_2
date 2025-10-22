@@ -2,8 +2,6 @@ studentCREATE DATABASE tkd;
 
 USE tkd;
 
-DROP TABLE student;
-
 CREATE TABLE student (
   id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(80) NOT NULL,
@@ -15,12 +13,11 @@ CREATE TABLE student (
   active BOOLEAN NOT NULL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
-CREATE TABLE competition (
-	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-	competition_type VARCHAR(30) NOT NULL,
-	category VARCHAR(50) NOT NULL,
-	result VARCHAR(20) NOT NULL,
-	event_date DATE NOT NULL,
-	student_id BIGINT(20) NOT NULL,
-	FOREIGN KEY (student_id) REFERENCES student(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;tkd
+CREATE TABLE training (
+  id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+  training_type VARCHAR(30) NOT NULL,
+  training_date DATE NOT NULL,
+  student_id BIGINT(20) NOT NULL,
+  CONSTRAINT fk_training_student
+    FOREIGN KEY (student_id) REFERENCES student(id)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
