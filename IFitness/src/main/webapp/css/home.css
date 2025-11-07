@@ -1,8 +1,28 @@
 @charset "UTF-8";
 
 img {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-primary {
+	background-color: purple;
+	border-color: purple;
+}
+
+.btn-primary:hover {
+	background-color: #710071;
+	border-color: #710071;
+}
+
+.btn-primary:active {
+	background-color: purple !important;
+	border-color: purple !important;
+}
+
+.btn-primary:focus {
+	background-color: purple !important;
+	border-color: purple !important;
 }
 
 .dropdown-item:active {
@@ -22,5 +42,9 @@ img {
 }
 
 button {
+	width: 100%;
+}
+
+button, #link {
 	width: 100%;
 }

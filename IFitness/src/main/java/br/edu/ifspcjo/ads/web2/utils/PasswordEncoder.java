@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncoder {
+
 	public static String encode(String password) {
 		String passwordEncrypted = null;
 		try {

@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import br.edu.ifspcjo.ads.web2.model.User;
 
 public class UserDao {
+
 	private DataSource dataSource;
 
 	public UserDao(DataSource dataSource) {
@@ -25,7 +26,7 @@ public class UserDao {
 		if(optional.isPresent()) {
 			return false;
 		}
-		
+
 		String sql = "insert into user (name, email, password, "
 				+ "birth_date, gender, active) values (?,?,?,?,?,?)";
 		try(Connection conn = dataSource.getConnection(); 

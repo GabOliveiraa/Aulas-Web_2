@@ -1,6 +1,7 @@
 package br.edu.ifspcjo.ads.web2.model;
 
 public enum Gender {
+	
 	MASCULINO("Masculino"),
 	FEMININO("Feminino"),
 	OUTRO("Outro"),
@@ -15,4 +16,5 @@ public enum Gender {
 	public String getDescription() {
 		return description;
 	}
+
 }

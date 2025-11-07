@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Activity implements Serializable {
 
-	private static final long serialVersionUID = 1L; // gera um fluxo de Bytes
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private ActivityType type;
@@ -81,3 +81,4 @@ public class Activity implements Serializable {
 	}
 
 }
+

@@ -121,14 +121,18 @@
 								<td>${activity.distance}</td>
 								<td>${activity.duration}</td>
 								<td>
-									<a class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
-                						href="activityRegister?action=update&activity-id=${activity.id}">
-                						<img src="img/pencil-square.svg" alt="Editar">
-                					</a>
-                					<a class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir"
-                						href="activityRegister?action=delete&activity-id=${activity.id}">
-                						<img src="img/trash.svg" alt="Excluir">
-                					</a>
+									<span data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+										<a class="btn" href="activityRegister?action=update&activity-id=${activity.id}">
+	                								<img src="img/pencil-square.svg" alt="Editar">
+	                							</a>
+									</span>
+									
+                							<span data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir">
+                								<a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-id="${activity.id}">
+	                								<img src="img/trash.svg" alt="Excluir">
+	                							</a>
+                							</span>
+                					
 								</td>
 							</tr>
 						</c:forEach>
@@ -139,6 +143,25 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal" tabindex="-1" id="myModal">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Exclusão</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Tem certeza que deseja excluir a atividade?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+		        <button type="button" id="delete" class="btn btn-danger">Excluir</button>
+		      </div>
+		    </div>
+	  	</div>
 	</div>
 	
 	<script

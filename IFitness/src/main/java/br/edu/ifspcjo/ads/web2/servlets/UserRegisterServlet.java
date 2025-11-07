@@ -50,7 +50,9 @@ public class UserRegisterServlet extends HttpServlet{
 			req.setAttribute("result", "notRegistered");
 			dispatcher = req.getRequestDispatcher("user-register.jsp");
 		}
+		
 		dispatcher.forward(req, resp);
 	}
 
 }
+

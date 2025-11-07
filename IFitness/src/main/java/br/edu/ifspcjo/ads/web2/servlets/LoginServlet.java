@@ -10,10 +10,10 @@ import br.edu.ifspcjo.ads.web2.utils.PasswordEncoder;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet{
@@ -29,30 +29,20 @@ public class LoginServlet extends HttpServlet{
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		UserDao userDao = new UserDao(DataSourceSearcher.getInstance().getDataSource());
-		Optional<User> optional = userDao.getUserByEmailAndPassword(email, PasswordEncoder.encode(password));
-		RequestDispatcher dispatcher = null;
+		Optional<User> optional = userDao.getUserByEmailAndPassword(email, 
+				PasswordEncoder.encode(password));
+		String url;
 		if(optional.isPresent()) {
-			// armazenar o cookie
-			Cookie cookie = new Cookie("loggedUser", email);
-			cookie.setMaxAge(60*60*24); //em segundos
-			resp.addCookie(cookie);
-			
-			req.setAttribute("name", optional.get().getName());
-			dispatcher = req.getRequestDispatcher("/homeServlet");
+			User user = optional.get();
+			HttpSession session = req.getSession();
+			session.setMaxInactiveInterval(60);
+			session.setAttribute("user", user);
+			url = "/homeServlet";
 		}else {
-			// remover o cookie
-			Cookie[] cookies = req.getCookies();
-			if(cookies != null) {
-				for(Cookie c: cookies) {
-					if(c.getName().equals("loggedUser")) {
-					  c.setMaxAge(0);
-					  resp.addCookie(c);
-					}
-				}
-			}
 			req.setAttribute("result", "loginError");
-			dispatcher = req.getRequestDispatcher("/login.jsp");
+			url = "/login.jsp";
 		}
+		RequestDispatcher dispatcher = req.getRequestDispatcher(url);
 		dispatcher.forward(req, resp);
 	}
 

@@ -1,0 +1,6 @@
+br\edu\ifspcjo\ads\web2\model\Gender.class
+br\edu\ifspcjo\ads\web2\model\User.class
+br\edu\ifspcjo\ads\web2\utils\PasswordEncoder.class
+br\edu\ifspcjo\ads\web2\servlets\UserRegisterServlet.class
+br\edu\ifspcjo\ads\web2\utils\DataSourceSearcher.class
+br\edu\ifspcjo\ads\web2\dao\UserDao.class

@@ -2,8 +2,6 @@ package br.edu.ifspcjo.ads.web2.filters;
 
 import java.io.IOException;
 
-import java.io.IOException;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,7 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/homeServlet","/activityRegister","/activitySearch","/home.jsp","/activity-register.jsp"}, filterName = "Authorization")
+@WebFilter(urlPatterns = {"/homeServlet","/activityRegister", "/activitySearch", "/home.jsp",
+		"/activity-register.jsp"}, filterName = "Authorization")
 public class AuthorizationFilter implements Filter {
 
 	@Override

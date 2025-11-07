@@ -3,6 +3,8 @@ package br.edu.ifspcjo.ads.web2.servlets;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import com.google.gson.Gson;
+
 import br.edu.ifspcjo.ads.web2.dao.ActivityDao;
 import br.edu.ifspcjo.ads.web2.model.Activity;
 import br.edu.ifspcjo.ads.web2.model.ActivityType;
@@ -64,21 +66,27 @@ public class ActivityRegisterServlet extends HttpServlet {
 		String url = null;
 		ActivityDao activityDao = new ActivityDao(DataSourceSearcher.getInstance().getDataSource());
 		Activity activity = activityDao.getActivitiesById(activityId); 
+		RequestDispatcher dispatcher = null;
 		if(activity != null) {
 			if(action.equals("update")) {
 				req.setAttribute("activity", activity);
 				url = "/activity-register.jsp";
+				dispatcher = req.getRequestDispatcher(url);
+				dispatcher.forward(req, resp);
 			}
 			if(action.equals("delete")) {
-				activityDao.delete(activity);
-				url = "/homeServlet";
+				Boolean response = activityDao.delete(activity);
+				Gson gson = new Gson();
+				String json = gson.toJson(response);
+				resp.setContentType("application/json");
+				resp.getWriter().write(json.toString());
 			}
 		}else {
 			url = "/homeServlet";
+			dispatcher = req.getRequestDispatcher(url);
+			dispatcher.forward(req, resp);
 		}
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-		dispatcher.forward(req, resp);
 	}
 
 }
