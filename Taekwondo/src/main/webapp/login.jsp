@@ -34,7 +34,7 @@
         </c:when>
       </c:choose>
 
-      <form action="${pageContext.request.contextPath}/loginServlet" method="post">
+      <form action="<c:url value='/loginServlet'/>" method="post">
 		  <div class="mb-3 position-relative input-wrapper">
 		    <label for="email" class="form-label">Usuário</label>
 		    <input type="email"
@@ -71,7 +71,7 @@
 
 
       <div class="text-center mt-3">
-        <a href="${pageContext.request.contextPath}/user-register.jsp" class="text-decoration-none">
+        <a href="<c:url value='/user-register.jsp'/>" class="text-decoration-none">
           Não tem cadastro? Cadastre-se
         </a>
       </div>

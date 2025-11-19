@@ -3,14 +3,6 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
-<%-- protege a página: exige aluno na sessão --%>
-<%
-    if (session.getAttribute("student") == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-        return;
-    }
-%>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -42,8 +34,8 @@
 	              Treinos
 	            </a>
 	            <ul class="dropdown-menu" aria-labelledby="navComp">
-					<li><a class="dropdown-item" href="${pageContext.request.contextPath}/myTraining">Meus Treinos</a></li>
-					<li><a class="dropdown-item" href="${pageContext.request.contextPath}/training">Cadastrar Treino</a></li>
+					<li><a class="dropdown-item" href="<c:url value='/myTraining'/>">Meus Treinos</a></li>
+					<li><a class="dropdown-item" href="<c:url value='/training'/>">Cadastrar Treino</a></li>
 	            </ul>
 	          </li>
 	
@@ -58,6 +50,36 @@
 
   <div class="container mt-5">
     <h2 class="text-center mb-4">Meus Treinos</h2>
+    
+    <form action="<c:url value='/trainingSearch'/>" method="post" class="mb-4">
+	    <div class="row g-3">
+	        <div class="col-12 col-md-4">
+	            <label for="type" class="form-label">Tipo</label>
+	            <select class="form-select" name="type" id="type">
+	                <option value="" selected>Todos</option>
+	                <option value="POOMSE">Poomse</option>
+	                <option value="LUTA">Luta</option>
+	                <option value="TECNICA">Técnica</option>
+	                <option value="CONDICIONAMENTO">Condicionamento</option>
+	                <option value="FLEXIBILIDADE">Flexibilidade</option>
+	            </select>
+	        </div>
+	
+	        <div class="col-12 col-md-3">
+	            <label for="initial-date" class="form-label">Data inicial</label>
+	            <input type="date" class="form-control" id="initial-date" name="initial-date">
+	        </div>
+	
+	        <div class="col-12 col-md-3">
+	            <label for="final-date" class="form-label">Data final</label>
+	            <input type="date" class="form-control" id="final-date" name="final-date">
+	        </div>
+	
+	        <div class="col-12 col-md-2 d-flex align-items-end">
+	            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+	        </div>
+	    </div>
+	</form>
 
     <c:choose>
       <c:when test="${not empty trainings}">
@@ -83,13 +105,13 @@
 			        <td class="text-center">
 			          <a class="btn btn-sm btn-outline-primary me-1"
 			             title="Editar"
-			             href="${pageContext.request.contextPath}/training?action=edit&id=${t.id}">
+			             href="<c:url value='/training?action=edit&id=${t.id}'/>">
 			            <jsp:include page="img/edit-pencil-icon.jsp" />
 			          </a>
 			
 			          <a class="btn btn-sm btn-outline-danger"
 			             title="Excluir"
-			             href="${pageContext.request.contextPath}/training?action=delete&id=${t.id}"
+			             href="<c:url value='/training?action=delete&id=${t.id}'/>"
 			             onclick="return confirm('Excluir este treino?');">
 			            <jsp:include page="img/trash-icon.jsp" />
 			          </a>
@@ -108,10 +130,10 @@
     </c:choose>
 
     <div class="d-flex justify-content-center gap-2 mt-4">
-      <a href="${pageContext.request.contextPath}/training-register.jsp" class="btn btn-primary">
+      <a href="<c:url value='/training-register.jsp'/>" class="btn btn-primary">
         Cadastrar novo treino
       </a>
-      <a href="${pageContext.request.contextPath}/home.jsp" class="btn btn-secondary">
+      <a href="<c:url value='/home.jsp'/>" class="btn btn-secondary">
         Voltar
       </a>
     </div>

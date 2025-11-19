@@ -26,7 +26,7 @@
         </div>
       </c:if>
 
-      <form action="${pageContext.request.contextPath}/studentRegisterServlet" method="post" id="form1">
+      <form action="<c:url value='/studentRegisterServlet'/>" method="post" id="form1">
         <h1 class="text-center mb-4">Cadastro de Aluno</h1>
 
         <div class="mb-2">
@@ -94,7 +94,7 @@
       </form>
 
       <div class="text-center mt-3">
-        <a href="${pageContext.request.contextPath}/login.jsp">Já tem conta? Fazer login</a>
+        <a href="<c:url value='/login.jsp'/>">Já tem conta? Fazer login</a>
       </div>
 
     </div>
@@ -104,6 +104,6 @@
           integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
           crossorigin="anonymous">
   </script>
-  <script src="${pageContext.request.contextPath}/js/user-register.js"></script>
+  <script src="<c:url value='/js/user-register.js'/>"></script>
 </body>
 </html>

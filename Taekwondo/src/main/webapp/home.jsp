@@ -2,13 +2,6 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
-<%
-    if (session.getAttribute("student") == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-        return;
-    }
-%>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -41,8 +34,8 @@
               Treinos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navComp">
-              <li><a class="dropdown-item" href="${pageContext.request.contextPath}/myTraining">Meus Treinos</a></li>
-					<li><a class="dropdown-item" href="${pageContext.request.contextPath}/training">Cadastrar Treino</a></li>
+              <li><a class="dropdown-item" href="<c:url value='/myTraining'/>">Meus Treinos</a></li>
+					<li><a class="dropdown-item" href="<c:url value='/training'/>">Cadastrar Treino</a></li>
             </ul>
           </li>
         </ul>

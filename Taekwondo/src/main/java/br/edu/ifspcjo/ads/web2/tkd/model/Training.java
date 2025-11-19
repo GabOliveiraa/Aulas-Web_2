@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Training implements Serializable {
+	private static final long serialVersionUID = 1L;
     private Long id;
     private TrainingType type;
     private LocalDate date;
