@@ -12,6 +12,8 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 import br.edu.ifspcjo.ads.web2.tkd.dao.filters.TrainingFilter;
+import br.edu.ifspcjo.ads.web2.tkd.dto.TrainingByDay;
+import br.edu.ifspcjo.ads.web2.tkd.dto.TrainingByType;
 import br.edu.ifspcjo.ads.web2.tkd.model.Student;
 import br.edu.ifspcjo.ads.web2.tkd.model.Training;
 import br.edu.ifspcjo.ads.web2.tkd.model.TrainingType;
@@ -39,9 +41,6 @@ public class TrainingDao {
         }
     }
 
-    /**
-     * Lista todos os treinos de um aluno (sem filtro).
-     */
     public List<Training> listByStudent(Student s) {
         String sql = "SELECT id, training_type, training_date FROM training WHERE student_id=? ORDER BY training_date DESC";
         List<Object> params = new ArrayList<>();
@@ -49,9 +48,6 @@ public class TrainingDao {
         return getTrainingList(sql, params, s);
     }
 
-    /**
-     * Lista treinos usando filtros de tipo e intervalo de datas.
-     */
     public List<Training> listByFilter(TrainingFilter filter) {
         StringBuilder sql = new StringBuilder(
             "SELECT id, training_type, training_date FROM training WHERE student_id=?"
@@ -157,4 +153,56 @@ public class TrainingDao {
             throw new RuntimeException("Erro ao excluir treino", e);
         }
     }
+    
+    public List<TrainingByType> getTrainingsStatisticsByType(Student student) {
+        String sql = "SELECT training_type, COUNT(*) AS training_count " +
+                     "FROM training WHERE student_id=? GROUP BY training_type";
+        List<TrainingByType> result = new ArrayList<>();
+
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setLong(1, student.getId());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    TrainingByType dto = new TrainingByType();
+                    TrainingType type = TrainingType.valueOf(rs.getString("training_type"));
+                    dto.setType(type.getLabel());
+                    dto.setCount(rs.getInt("training_count"));
+                    result.add(dto);
+                }
+            }
+
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro durante a consulta de estatísticas por tipo", e);
+        }
+    }
+
+    public List<TrainingByDay> getTrainingsStatisticsByDay(Student student) {
+        String sql = "SELECT training_date, COUNT(*) AS training_count " +
+                     "FROM training WHERE student_id=? GROUP BY training_date ORDER BY training_date";
+        List<TrainingByDay> result = new ArrayList<>();
+
+        try (Connection con = dataSource.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setLong(1, student.getId());
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    TrainingByDay dto = new TrainingByDay();
+                    dto.setDate(rs.getDate("training_date").toLocalDate());
+                    dto.setTotalTrainings(rs.getLong("training_count"));
+                    result.add(dto);
+                }
+            }
+
+            return result;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro durante a consulta de estatísticas por dia", e);
+        }
+    }
+
 }

@@ -38,6 +38,10 @@
 					<li><a class="dropdown-item" href="<c:url value='/training'/>">Cadastrar Treino</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+			<a class="nav-link" href="<c:url value='/statistics.jsp'/>">Estatísticas</a>
+		  </li>
+			          
         </ul>
         <div class="d-flex align-items-center text-white">
           <span class="me-3">Olá, <strong>${not empty student ? student.name : name}</strong></span>
