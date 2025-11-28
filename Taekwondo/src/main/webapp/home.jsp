@@ -13,7 +13,6 @@
 </head>
 
 <body class="bg-light">
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand fw-bold" href="<c:url value='/home.jsp'/>">TDK Academy</a>
@@ -26,7 +25,7 @@
             <a class="nav-link active" href="<c:url value='/home.jsp'/>">Início</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Eventos</a>
+            <a class="nav-link" href="<c:url value='/event.jsp'/>">Eventos</a>
           </li>
 
           <li class="nav-item dropdown">

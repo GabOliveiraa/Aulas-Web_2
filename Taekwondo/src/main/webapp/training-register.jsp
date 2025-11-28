@@ -79,23 +79,37 @@
                 </c:when>
 
                 <c:otherwise>
-                    <h1 class="text-center">Editar Treino</h1>
+                    <h1 class="text-center">Novo Treino</h1>
                     <input type="hidden" name="id" value="${training.id}">
                 </c:otherwise>
             </c:choose>
 
-            <div class="mb-2">
-                <label for="type">Tipo*</label>
-                <select class="form-select" name="type" id="type" required>
-                    <option disabled selected>Selecione</option>
-
-                    <option value="POOMSE"           ${training.type == 'POOMSE' ? 'selected' : ''}>Poomse</option>
-                    <option value="LUTA"             ${training.type == 'LUTA' ? 'selected' : ''}>Luta</option>
-                    <option value="TECNICA"          ${training.type == 'TECNICA' ? 'selected' : ''}>Técnica</option>
-                    <option value="CONDICIONAMENTO"  ${training.type == 'CONDICIONAMENTO' ? 'selected' : ''}>Condicionamento</option>
-                    <option value="FLEXIBILIDADE"    ${training.type == 'FLEXIBILIDADE' ? 'selected' : ''}>Flexibilidade</option>
-                </select>
-            </div>
+            <div class="mb-3">
+			  <label for="type" class="form-label">Tipo de treino</label>
+			  <select
+			      class="form-select ${not empty typeError ? 'is-invalid' : ''}"
+			      name="type"
+			      id="type">
+			    <option value="">Selecione</option>
+			    <option value="POOMSE"
+			        ${training.type == 'POOMSE' ? 'selected' : ''}>Poomse</option>
+			    <option value="LUTA"
+			        ${training.type == 'LUTA' ? 'selected' : ''}>Luta</option>
+			    <option value="TECNICA"
+			        ${training.type == 'TECNICA' ? 'selected' : ''}>Técnica</option>
+			    <option value="CONDICIONAMENTO"
+			        ${training.type == 'CONDICIONAMENTO' ? 'selected' : ''}>Condicionamento</option>
+			    <option value="FLEXIBILIDADE"
+			        ${training.type == 'FLEXIBILIDADE' ? 'selected' : ''}>Flexibilidade</option>
+			  </select>
+			
+			  <!-- Mensagem de erro abaixo do select -->
+			  <c:if test="${not empty typeError}">
+			    <div class="invalid-feedback">
+			      ${typeError}
+			    </div>
+			  </c:if>
+			</div>
 
             <div class="mb-2">
                 <label for="date">Data*</label>
