@@ -1,19 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>TDK Academy - Área do Aluno</title>
+<title>TDK Academy - Editar Perfil</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="<c:url value='/css/home.css'/>">
-</head>
+<link rel="stylesheet" href="<c:url value='/css/profile.css'/>">
 
+</head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
@@ -53,51 +54,47 @@
 			</div>
 		</div>
 	</nav>
+	<div class="container mt-5 d-flex justify-content-center">
+		<div class="card p-4 col-md-6">
 
-	<main class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<div class="card shadow-sm border-0">
-					<div class="card-body text-center">
-						<h3 class="card-title mb-3">Bem-vindo, ${student.name}!</h3>
-						<p class="lead">
-							Você está logado como aluno da academia <strong>TDK
-								Academy</strong>.
-						</p>
+			<h2 class="mb-3 text-center">Alterar Faixa</h2>
 
-						<hr>
+			<c:if test="${not empty error}">
+				<div class="alert alert-danger">${error}</div>
+			</c:if>
 
-						<div class="row mt-4">
-							<div class="col-md-6">
-								<p>
-									<strong>E-mail:</strong> ${student.email}
-								</p>
-								<p>
-									<strong>Data de nascimento:</strong> ${student.birthDateBr}
-								</p>
-							</div>
-							<div class="col-md-6">
-								<p>
-									<strong>Gênero:</strong> ${student.gender}
-								</p>
-								<p>
-									<strong>Faixa:</strong> <span
-										class="badge text-dark bg-transparent">${student.belt.description}</span>
-								</p>
-							</div>
-						</div>
+			<p>
+				<strong>Nome:</strong> ${student.name}
+			</p>
 
-						<div class="mt-4 d-flex gap-2 justify-content-center">
-							<a href="<c:url value='/myTraining'/>" class="btn btn-primary">Ver
-								Treinos</a> <a href="<c:url value='/profile'/>"
-								class="btn btn-secondary">Editar Perfil</a>
-						</div>
+			<p>
+				<strong>Faixa atual:</strong> <span
+					class="belt-badge belt-${fn:toLowerCase(student.belt)}">
+					${student.belt.description} </span>
+			</p>
 
-					</div>
+			<hr>
+
+			<form action="<c:url value='/profile'/>" method="post" class="mt-3">
+
+				<div class="mb-3">
+					<label for="belt" class="form-label fw-semibold">Selecione
+						a nova faixa:</label> <select id="belt" name="belt" class="form-select">
+						<c:forEach var="b" items="${belts}">
+							<option value="${b}"
+								${student.belt == b ? 'selected="selected"' : ''}>
+								${b.description}</option>
+						</c:forEach>
+					</select>
 				</div>
-			</div>
+
+				<button type="submit" class="btn btn-primary w-100">Salvar</button>
+
+				<a href="<c:url value='/home.jsp'/>"
+					class="btn btn-secondary w-100 mt-2">Voltar</a>
+			</form>
 		</div>
-	</main>
+	</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

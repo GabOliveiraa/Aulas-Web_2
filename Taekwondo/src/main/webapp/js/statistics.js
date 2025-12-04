@@ -1,7 +1,14 @@
 "use strict";
+// cores
+var colors = [
+    '#03fcdb', // Condicionamento - ciano neon
+    '#5e03fc', // Poomsae - roxo forte
+    '#222222', // Treino de luta - preto
+    '#fc03c2', // Técnica - rosa choque
+    '#d7fc03', // Flexibilidade - amarelo neon
+];
 
-// Cores dos gráficos
-var colors = ['#007bff', '#28a745', '#333333', '#c3e6cb', '#dc3545', '#6c757d'];
+
 
 window.onload = loadData;
 

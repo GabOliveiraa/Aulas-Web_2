@@ -1,9 +1,13 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap')
+	;
 
 * {
-  font-family: "Oswald", sans-serif !important;
+	font-family: "Oswald", sans-serif !important;
 }
+
 svg {
 	width: 45px;
 	height: 40px;
@@ -18,25 +22,25 @@ span {
 }
 
 .btn-warning {
-  background-color: #FBFA0C;
-  border-color: #FBFA0C;
-  color: black;
-  font-weight: 600;
-  margin-top: 45px;
+	background-color: #FBFA0C;
+	border-color: #FBFA0C;
+	color: black;
+	font-weight: 600;
+	margin-top: 45px;
 }
 
 .btn-warning:hover {
-  background-color: #fbe60c;
-  border-color: gray;
+	background-color: #fbe60c;
+	border-color: gray;
 }
 
 .btn-warning:active {
-  background-color: #fbe60c !important;
-  border-color: gray !important;
+	background-color: #fbe60c !important;
+	border-color: gray !important;
 }
 
 input.form-control:focus {
-  box-shadow: 0 0 5px rgba(251, 250, 12, 0.5);
-  border-color: #FBFA0C;
-  background-color: rgba(239, 239, 240, 1.5);
+	box-shadow: 0 0 5px rgba(251, 250, 12, 0.5);
+	border-color: #FBFA0C;
+	background-color: rgba(239, 239, 240, 1.5);
 }
